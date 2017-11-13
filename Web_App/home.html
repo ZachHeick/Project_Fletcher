@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reddit Comment Simulator</title>
+    <link rel="stylesheet" type="text/css" href="static/home_style.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div id="header_title">
+            <p id="title">Would <b style="font-size: 55px;color: #FF5700;">reddit</b> Like My Comment?</p>
+        </div>
+        <div id="header_desc">
+            <p>
+                Simulates comment scores for specific Reddit subreddits depending on how many minutes the comment
+                would be made after a thread was posted and the content of the comment itself. <br>
+            </p>
+            <select style="font-size:20px;" id="subreddits">
+                <option value="atheism">/r/atheism</option>
+                <option value="hiphopheads">/r/hiphopheads</option>
+                <option value="politics">/r/politics</option>
+                <option value="science">/r/science</option>
+                <option value="worldnews">/r/worldnews</option>
+            </select>
+            <p>Thread was posted: <input type="text" id="time" value="0" size="5" maxlength="5"></input> minutes ago.</p>
+        </div>
+    </div>
+
+    <div class="page">
+        <textarea rows="7" cols="50" id="comment"></textarea>
+    </div>
+
+    <div class="buttons">
+        <button type="submit" id="save" onclick="postData()">Save</button>
+        <button type="submit" id="clearPage" onclick="clearComments()" style="float: right;">Clear Comments</button>
+        <button type="submit" id="clearTextarea" onclick="clearTextarea()" style="float: right;">Clear Text Area</button>
+    </div>
+
+    <div id="out_container">
+
+    </div>
+
+    <script>
+        function postData() {
+            var text = document.getElementById("comment").value;
+            var time = document.getElementById("time").value;
+            var subreddits = document.getElementById("subreddits");
+            var sub = subreddits.value;
+            var result;
+
+            console.log(text);
+            console.log(time);
+            console.log(sub);
+
+            $.ajax({
+                 type: "POST",
+                 contentType: "application/json; charset=utf-8",
+                 url: "/class",
+                 dataType: "json",
+                 async: true,
+                 <!--data: "{\"comment\": [" + "\"" + text + "\"" + ", " + time + "]}",-->
+                 data: JSON.stringify({'comment': [text, time, sub]}),
+                success: function (results) {
+                    console.log("Success")
+                    if (results["pred"] == 0){
+                        var result = "NO";
+                        var d_head = document.createElement("div");
+                        d_head.setAttribute("id", "out_text_head");
+
+                        var p = document.createElement("p");
+                        p.setAttribute('id', 'comment_header');
+                        p.innerHTML = "<b id='username'>FakeUsername123</b> <b>" + result + "</b> " + time + " minutes</p>";
+                        d_head.appendChild(p);
+
+                        var d = document.createElement("div");
+                        d.setAttribute('id', 'out_text');
+
+                        var p = document.createElement("p");
+                        p.setAttribute('id', 'comment_text');
+                        p.innerText = text;
+                        d.appendChild(p);
+
+                        var line = document.createElement("hr");
+                        line.setAttribute('align', 'center');
+                        line.setAttribute('width', '100%');
+                        d.appendChild(line);
+
+                        var container = document.getElementById("out_container");
+                        container.prepend(d);
+                        container.prepend(d_head);
+
+                        document.getElementById("header_title").innerHTML = `<p id="title">Would <b style="font-size: 55px;color: red;">
+                        reddit</b> Like My Comment? <b style="color: #9494FF;font-size:55px;">&emsp;NO</b></p>`;
+                    }
+                    else{
+                        result = "YES";
+                        var d_head = document.createElement("div");
+                        d_head.setAttribute("id", "out_text_head");
+
+                        var p = document.createElement("p");
+                        p.setAttribute('id', 'comment_header');
+                        p.innerHTML = "<b id='username'>FakeUsername123</b> <b>" + result + "</b> " + time + " minutes</p>";
+                        d_head.appendChild(p);
+
+                        var d = document.createElement("div");
+                        d.setAttribute('id', 'out_text');
+
+                        var p = document.createElement("p");
+                        p.setAttribute('id', 'comment_text');
+                        p.innerText = text;
+                        d.appendChild(p);
+
+                        var line = document.createElement("hr");
+                        line.setAttribute('align', 'center');
+                        line.setAttribute('width', '100%');
+                        d.appendChild(line);
+
+                        var container = document.getElementById("out_container");
+                        container.prepend(d);
+                        container.prepend(d_head);
+
+                        document.getElementById("header_title").innerHTML = `<p id="title">Would <b style="font-size: 55px;color: red;">
+                        reddit</b> Like My Comment? <b style="color: #FF8b60;font-size:55px;">&emsp;YES</b></p>`;                    }
+                },
+                error: function(error) {
+
+                    console.log("failure")
+                }
+            })
+
+        }
+
+        function clearTextarea() {
+            document.getElementById("comment").value = "";
+            document.getElementById("time").value = 0;
+        }
+
+        function clearComments() {
+            document.getElementById("out_container").innerHTML = "";
+            document.getElementById("comment").value = "";
+            document.getElementById("time").value = 0;
+            document.getElementById("header_title").innerHTML = `<p id="title">Would <b style="font-size: 55px;color: red;">
+            reddit</b> Like My Comment?</p>`;
+        }
+
+    </script>
+</body>
+</html>
+
