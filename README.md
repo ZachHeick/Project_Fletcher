@@ -26,4 +26,6 @@ With this in mind, I wanted to see if I could predict how different subreddits v
   
 `Web_App` contains the files for a simple flask application where users can select a subreddit and enter a comment and see how that subreddit would view the comment!   
 
+### Screenshot  
+
 ![Flask App](https://github.com/ZachHeick/Project_Fletcher/blob/master/flask_app_screenshot.png)  
