@@ -15,4 +15,11 @@ With this in mind, I wanted to see if I could predict how different subreddits v
 
 ---  
 
-  
+`Data_Files` contains pickle files used for collecting comments and modeling.
+`Project_Notebooks` contains two notebooks for this project:  
+
+  1. `Get_Clean_Comments.ipynb`  
+  2. `Project_Fletcher_Modeling.ipynb`  
+
+`Scripts` contains a script for using the Reddit API to collect comments, pickle them, and store the comments in a MongoDB database hosted by AWS.  
+`Web_App` contains the files for a simple flask application where users can select a subreddit and enter a comment and see how that subreddit would view the comment!   
