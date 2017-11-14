@@ -9,7 +9,7 @@ When users make comments on a submission, they are given an intial score of 1. F
 
 ### The Problem  
 
-While the comment scoring system on Reddit is working as intended, users are also taking advantage of it as well. It is common across Reddit that if someone posts a genuine comment of an opinion that does not agree with the majority of Reddit users' opnions, that comment will be downvoted out of disagreement, eventually pushing the comment lower and lower down the submission page. The result is that many subreddits and submissions have become "echo chambers", where the same opinion or viewpoint is being iterated over and over again without any discussion from opposing sides.  
+While the comment scoring system on Reddit is working as intended, users are also taking advantage of it as well. If someone posts a genuine comment of an opinion that does not agree with the majority of Reddit users' opnions, that comment will be downvoted out of disagreement, eventually pushing the comment lower and lower down the submission page. The result is that many subreddits and submissions have become "echo chambers", where the same opinion or viewpoint is being iterated over and over again without any discussion from opposing sides.  
 
 With this in mind, I wanted to see if I could predict how different subreddits view comments based on the context of the comment itself.  
 
