@@ -24,10 +24,4 @@ With this in mind, I wanted to see if I could predict how different subreddits v
 
 `Scripts` contains a script for using the Reddit API to collect comments, pickle them, and store the comments in a MongoDB database hosted by AWS.  
   
-`Web_App` contains the files for a simple flask application where users can select a subreddit and enter a comment and see how that subreddit would view the comment!   
-
 The blog post can be found [here](https://zachheick.github.io/2017/11/10/Would-Reddit-Like-My-Comment/).  
-
-### Screenshot  
-
-![Flask App](https://github.com/ZachHeick/Project_Fletcher/blob/master/flask_app_screenshot.png)  
