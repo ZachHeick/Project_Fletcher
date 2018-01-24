@@ -15,8 +15,6 @@ With this in mind, I wanted to see if I could predict how different subreddits v
 
 ---  
 
-`Data_Files` contains pickle files used for collecting comments and modeling.  
-
 `Project_Notebooks` contains two notebooks for this project:   
 
   1. `Get_Clean_Comments.ipynb`  
